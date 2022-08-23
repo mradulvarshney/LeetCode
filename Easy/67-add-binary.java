@@ -1,4 +1,4 @@
-class Solution 
+lass Solution
 {
     public String addBinary(String a, String b) 
     {   
