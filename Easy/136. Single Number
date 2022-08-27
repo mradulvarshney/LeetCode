@@ -1,0 +1,34 @@
+class Solution {
+    public int singleNumber(int[] nums) 
+    {
+        Arrays.sort(nums);
+        ArrayList<Integer> arr = new ArrayList<>();
+        int res = 0;
+        int j=0;
+        for(int i = 0; i<nums.length; i++)
+        {
+            if(!arr.contains(nums[i]))
+            {
+                // System.out.println("nums "+nums[i]);
+                j++;
+                // System.out.println("j "+j);
+                if(j==2)
+                {
+                    res = arr.get(i-1);
+                    break;
+                }
+                if ((j==1 && i==nums.length-1) || (j==1 && nums[i]!=nums[i+1]))
+                {
+                    res = nums[i];
+                    break;
+                }
+                arr.add(nums[i]);
+            }
+            else
+            {
+                j--;
+            }
+        }
+        return res;
+    }
+}
