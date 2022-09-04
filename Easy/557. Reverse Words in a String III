@@ -1,0 +1,29 @@
+class Solution {
+    public String reverseWords(String s) 
+    {
+        s=" "+s;
+        String str = "";
+        String res = "";
+        int j = 0;
+        for(int i=s.length()-1; i>=0; i--)
+        {
+            if(j==0 && s.charAt(i)==' ')
+            {
+                continue;
+            }
+            else if(j==1 && s.charAt(i)==' ')
+            {
+                res = str +" " +res;
+                str = "";
+                j=0;
+            }
+            else
+            {
+                str+=String.valueOf(s.charAt(i));
+                j=1;
+            }
+        }
+        
+        return res.substring(0,res.length()-1);
+    }
+}
