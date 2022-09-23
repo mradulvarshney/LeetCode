@@ -1,0 +1,17 @@
+class Solution {
+    public String firstPalindrome(String[] words) 
+    {
+        String ans = "";
+        
+        for(int i=0; i<words.length; i++)
+        {
+            StringBuilder str = new StringBuilder(words[i]);
+            if(String.valueOf(str).equals(String.valueOf(str.reverse())))
+            {
+                ans = words[i];
+                break;
+            }
+        }
+        return ans;
+    }
+}
