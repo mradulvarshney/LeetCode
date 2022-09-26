@@ -1,0 +1,22 @@
+class Solution {
+    public String convertToBase7(int num) 
+    {
+        int temp = num;
+        if(num==0)
+        {
+            return "0";
+        }
+        String ans = "";
+        while(num!=0)
+        {
+            int rem = num%7;
+            if(rem<0)
+                rem = -(rem);
+            ans = rem + ans;
+            num/=7;
+        }
+        if(temp<0)
+            ans = "-"+ans;
+        return ans;
+    }
+}
