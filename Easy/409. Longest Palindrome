@@ -1,0 +1,27 @@
+class Solution 
+{
+    public static int longestPalindrome(String s)
+    {
+        int[] lower = new int[26];
+        int[] upper = new int[26];
+        int count = 0;
+        for(int i=0; i<s.length(); i++)
+        {
+            char ch = s.charAt(i);
+            if(ch>=97)
+            {
+                lower[ch-'a']++;
+            }
+            else
+            {
+                upper[ch-'A']++;
+            }
+        }
+        for (int i = 0; i < 26; i++)
+        {
+            count+=(lower[i]/2)*2;
+            count+=(upper[i]/2)*2;
+        }
+        return count == s.length() ? count : count+1;
+    }
+}
