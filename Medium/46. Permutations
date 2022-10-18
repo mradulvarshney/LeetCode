@@ -1,0 +1,36 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) 
+    {
+        List<List<Integer>> list = new ArrayList<>();
+        if(nums.length == 0)
+        {
+            return list;
+        }
+        List<Integer> ans = new ArrayList<>();
+        boolean[] b = new boolean[nums.length];
+        compute(nums, ans, list, b);
+        return list;
+    }
+    
+    public static void compute(int[] nums, List<Integer> ans, List<List<Integer>> list, boolean[] b)
+    {
+        if(nums.length == ans.size())
+        {
+            list.add(new ArrayList<>(ans));
+            return;
+        }
+        
+        for(int i=0; i<nums.length; i++)
+        {
+            if(b[i])
+            {
+                continue;
+            }
+            b[i] = true;
+            ans.add(nums[i]);
+            compute(nums, ans, list, b);
+            b[i] = false;
+            ans.remove(ans.size()-1);
+        }
+    }
+}
