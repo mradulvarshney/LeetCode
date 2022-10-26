@@ -1,0 +1,24 @@
+class Solution 
+{
+    public List<List<Integer>> combine(int n, int k) 
+    {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> ans = new ArrayList<>();
+        combinations(n, k, 1, 0, ans, list);
+        return list;
+    }
+    private static void combinations(int n, int k, int index, int count, List<Integer> ans, List<List<Integer>> list)
+    {
+        if(count == k)
+        {
+            list.add(new ArrayList<>(ans));
+            return;
+        }
+        for(int i=index; i<=n; i++)
+        {
+            ans.add(i);
+            combinations(n, k, i+1, count+1, ans, list);
+            ans.remove(ans.size()-1);
+        }
+    }
+}
