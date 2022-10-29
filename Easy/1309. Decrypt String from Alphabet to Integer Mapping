@@ -1,0 +1,20 @@
+class Solution 
+{
+    public String freqAlphabets(String s) 
+    {
+        String ans = "";
+        for(int i=s.length()-1; i>=0; i--)
+        {
+            if(s.charAt(i)=='#')
+            {
+                ans = (char)(Integer.parseInt(s.substring(i-2,i))+96) + ans;
+                i-=2;
+            }
+            else
+            {
+                ans = (char)(Integer.parseInt(s.substring(i,i+1))+96) + ans;
+            }
+        }
+        return ans;
+    }
+}
