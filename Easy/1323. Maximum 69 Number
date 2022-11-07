@@ -1,0 +1,22 @@
+class Solution 
+{
+    public int maximum69Number (int num)
+    {
+        String str = ""+num;
+        String n = "";
+        for(int i=0; i<str.length(); i++)
+        {
+            if(str.charAt(i) == '6')
+            {
+                n = str.substring(0,i)+ 9+ str.substring(i+1);
+                break;
+            }
+            else if(i==str.length()-1)
+            {
+                return num;
+            }
+        }
+        
+        return Integer.parseInt(n);
+    }
+}
