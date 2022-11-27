@@ -1,0 +1,29 @@
+class Solution 
+{
+    public String digitSum(String s, int k) 
+    {
+        
+        while(s.length()>k)
+        {
+            String str = "";
+            int j = 0;
+            int sum = 0;
+            for(int i=0; i<s.length(); i++)
+            {
+                if(j==k)
+                {
+                    str += sum;
+                    j = 0;
+                    sum = 0;
+                    // System.out.println(str);
+                }
+                sum += s.charAt(i)-'0';
+                j++;
+            }
+            str += sum;
+            s = str;
+        }
+        
+        return s;
+    }
+}
