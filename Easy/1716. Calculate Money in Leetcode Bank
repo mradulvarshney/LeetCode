@@ -1,0 +1,21 @@
+class Solution 
+{
+    public int totalMoney(int n) 
+    {
+        int monday = 1;
+        int sum = 0;
+        int j = 0;
+        for(int i=0; i<n; i++)
+        {
+            sum += monday + j;
+            j++;
+            if(j == 7)
+            {
+                j = 0;
+                monday++;
+            }
+        }
+        
+        return sum;
+    }
+}
