@@ -1,0 +1,27 @@
+class Solution 
+{
+    public int[] nextGreaterElements(int[] nums) 
+    {
+        int ans[] = new int[nums.length];
+        Stack<Integer> st = new Stack<>();
+        
+        for(int i=0; i<2*nums.length; i++)
+        {
+            while(!st.isEmpty() && nums[i%nums.length]>nums[st.peek()])
+            {
+                int index = st.pop();
+                ans[index] = nums[i%nums.length];
+            }
+            if(i<nums.length)
+                st.push(i%nums.length);
+        }
+ 
+        while(!st.isEmpty())
+        {
+            int index = st.pop();
+            ans[index] = -1;
+        }
+        
+        return ans;
+    }
+}
