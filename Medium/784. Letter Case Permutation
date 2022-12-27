@@ -1,0 +1,25 @@
+class Solution 
+{
+    public List<String> letterCasePermutation(String s) 
+    {
+        List<String> ans=new ArrayList<>();
+        permute(ans,s.toCharArray(),0);
+        return ans;
+    }
+    
+    public void permute(List<String> ans, char[] chars, int index)
+    {
+        if(index==chars.length)
+            ans.add(new String(chars));
+        else
+        {
+            if(Character.isLetter(chars[index]))
+            {
+                chars[index]=Character.toLowerCase(chars[index]);
+                permute(ans,chars,index+1);
+                chars[index]=Character.toUpperCase(chars[index]);
+            }
+            permute(ans,chars,index+1);
+        }
+    }
+}
