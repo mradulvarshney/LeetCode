@@ -1,0 +1,66 @@
+class Solution 
+{
+    public String decodeString(String s) 
+    {
+        s+=" ";
+        String res = "";
+        Stack<String> st = new Stack<>();
+        st.push("0");
+        for(int i=0; i<s.length()-1; i++)
+        {
+            if(s.charAt(i)>=48 && s.charAt(i)<=57)
+            {
+                String str = st.pop();
+                int num = (Integer.parseInt(str)*10) + (s.charAt(i)-'0');
+                st.push(""+num);
+            }
+            else if(s.charAt(i) == ']')
+            {
+                String ss = "";
+                while(true)
+                {
+                    ss = st.pop() + ss;
+                    if(st.peek().equals("["))
+                    {
+                        st.pop();
+                        break;
+                    }
+                }
+                int num = Integer.parseInt(st.pop());
+                
+                for(int j=0; j<num; j++)
+                {
+                    st.push(ss);
+                }
+                st.push("0");
+            }
+            else
+            {
+                st.push(""+s.charAt(i));
+                if(s.charAt(i+1)>=48 && s.charAt(i+1)<=57)
+                {
+                    st.push("0");
+                }
+            }
+            
+        }
+        
+        while(!st.isEmpty())
+        {
+            res = st.pop() + res;
+        }
+        
+        String ans = "";
+        
+        for(int i=0; i<res.length(); i++)
+        {
+            if(res.charAt(i)>=48 && res.charAt(i)<=57)
+            {
+                continue;
+            }
+            ans += res.charAt(i);
+        }
+                
+        return ans;
+    }
+}
