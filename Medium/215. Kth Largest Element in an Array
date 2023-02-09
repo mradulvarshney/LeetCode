@@ -1,0 +1,27 @@
+class Solution 
+{
+    public int findKthLargest(int[] nums, int k) 
+    {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        for(int i=0; i<nums.length; i++)
+        {
+            pq.add(nums[i]);
+        }
+        int n = nums.length;
+        while(!pq.isEmpty())
+        {
+            
+            n--;
+            if(n+1 == k)
+            {
+                return pq.poll();
+            }
+            pq.poll();
+        }
+        return 0;
+    }
+}
+
+
+//Priority Queue is a Queue which creates a min heap in java and max heap in c++
