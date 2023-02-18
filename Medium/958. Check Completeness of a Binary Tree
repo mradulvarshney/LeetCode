@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution 
+{
+    public boolean isCompleteTree(TreeNode node) 
+    {
+        Queue<TreeNode> q = new LinkedList<>();
+        
+        q.add(node);
+        int t = 0;
+        
+        while(!q.isEmpty())
+        {
+            TreeNode curr = q.poll();
+            if(curr == null)
+            {
+                t = 1;
+                continue;
+            }
+            if(t == 1)
+            {
+                if(curr != null)
+                {
+                    return false;
+                }
+            }
+            q.add(curr.left);
+
+            q.add(curr.right);
+        }
+        
+        return true;
+    }
+}
