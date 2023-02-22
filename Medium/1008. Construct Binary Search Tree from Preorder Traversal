@@ -1,0 +1,51 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution 
+{
+    int index = 0;
+    Map<Integer, Integer> map = new HashMap<>();
+    public TreeNode bstFromPreorder(int[] preorder) 
+    {  
+        int[] inorder = new int[preorder.length];
+        for(int i=0; i<inorder.length; i++)
+        {
+            inorder[i] = preorder[i];
+        }
+        Arrays.sort(inorder);
+        for(int i=0; i<inorder.length; i++)
+        {
+            map.put(inorder[i], i);
+        }
+        TreeNode root = construct(preorder, inorder, 0, inorder.length-1);
+        return root;
+    }
+    
+    private TreeNode construct(int[] preorder, int[] inorder, int inorderStart, int inorderEnd)
+    {
+        if(index >= preorder.length || inorderStart > inorderEnd)
+        {
+            return null;
+        }
+        int element = preorder[index++];
+        TreeNode nn = new TreeNode(element, null, null);
+        int position = map.get(element);
+        
+        nn.left = construct(preorder, inorder, inorderStart, position-1);
+        nn.right = construct(preorder, inorder, position+1, inorderEnd);
+        
+        return nn;
+    }
+}
